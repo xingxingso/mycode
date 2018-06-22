@@ -1,0 +1,63 @@
+{//[
+    /*]*/
+    int a = '{\'"';
+}
+
+#include <stdio.h>
+/*the commments*/
+int main(void)
+{
+    //"0/!10\"040\'050.001//011/*!21\"/41\'/51./02/*!32.!23/ " 
+    // remove the comments
+    int c, tmp;
+    tmp = EOF;
+    int d = '/';
+    char p[] =
+"0/!10\"040\'050.001//011/*!21\"/41\'/51./02*!32.!23/ "
+"03*!33.!24\"00//4\\064.\\/*/*045\'005\\075./**056.047.05";
+    char p1[] =
+"//0/!10\"@40\'@50.@01/@11*!2"
+"1\"/41\'/5"            /* added by RAL */
+"/*1./02*!32.!23/ 03*!33.!24\"@04\\@64.@45\'@05\\@75.@56.@47.@5";
+    ///*circle
+    while((c=getchar()) != EOF)
+    {
+        /*the commments*/
+        if (c == '/' && ((tmp=getchar())=='/' || tmp=='*'))
+        {
+            /*the line comment   
+            one 
+            two*/
+            if (tmp == '/') //only /  
+            {
+                ///*  
+                //*/
+                while((c=getchar())!=EOF && c!='\n');
+            }
+            else{   /*only **/
+                /*
+                //test   
+                //one
+                */
+                while((c=getchar())!=EOF && !(c=='*' && ((c=getchar())!=EOF && c=='/')));
+            }
+        }/*//elseone*/  
+        else {    /*//test*/
+            putchar(c);
+
+            if (tmp!=EOF && tmp!='/' && tmp!='*')
+            {
+                putchar(tmp);
+                tmp = EOF;
+            }
+        }
+    }
+
+    /* print the number three */
+    printf("%d\n", 6/'\2');
+    /* remember to return a value from main */
+    // printf("%d\n", 6/"\2");
+    /* remember to return a value from main */
+
+    return /* comment inside return statement */ 0;
+}
