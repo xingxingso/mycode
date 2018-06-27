@@ -16,7 +16,7 @@ From http://clc-wiki.net/wiki/K%26R2_solutions:Chapter_3:Exercise_1
 int binserarch(int x, int v[], int n);
 int binserarch2(int x, int v[], int n);
 
-#define MAX_ELEMENT 20000
+#define MAX_ELEMENT 200
 
 int main(void)
 {
@@ -35,7 +35,7 @@ int main(void)
     /*  Output approximation of time taken for
         100,000 iterations of binsearch()       */
     
-    for ( i = 0, time_taken = clock(); i < 100000; ++i ) {
+    for ( i = 0, time_taken = clock(); i < 1000; ++i ) {
         index = binsearch(n, testdata, MAX_ELEMENT);
     }
     time_taken = clock() - time_taken;
@@ -53,7 +53,7 @@ int main(void)
     /*  Output approximation of time taken for
         100,000 iterations of binsearch2()        */
     
-    for ( i = 0, time_taken = clock(); i < 100000; ++i ) {
+    for ( i = 0, time_taken = clock(); i < 1000; ++i ) {
         index = binsearch2(n, testdata, MAX_ELEMENT);
     }
     time_taken = clock() - time_taken;
