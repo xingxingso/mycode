@@ -4,7 +4,7 @@
 
 // 1.9
 /* getline: read a line into s, return length */
-int getline(char s[],int lim)
+/*int getline(char s[],int lim)
 {
     int c, i;
     for (i=0; i < lim-1 && (c=getchar())!=EOF && c!='\n'; ++i)
@@ -15,7 +15,7 @@ int getline(char s[],int lim)
     }
     s[i] = '\0';
     return i;
-}
+}*/
 
 // 1.10
 /* getline: specialized version */
@@ -33,6 +33,18 @@ int getline(char s[],int lim)
     line[i] = '\0';
     return i;
 }*/
+
+// 2.8
+/* strcat: concatenate t to end of s; s must be big enough */
+void strcat(char s[], char t[])
+{
+    int i, j;
+    i = j = 0;
+    while (s[i] != '\0') /* find end of s */
+        i++;
+    while ((s[i++] = t[j++]) != '\0') /* copy t */
+        ;
+}
 
 // 4.1
 /* getline: get line into s, return length */
@@ -170,6 +182,87 @@ void itoa(int n, char s[])
     reverse(s);
 }
 
+// 4.3
+#define MAXVAL 100 /* maximum depth of val stack */
+int sp = 0; /* next free stack position */
+double val[MAXVAL]; /* value stack */
+
+/* push: push f onto value stack */
+void push(double f)
+{
+    if (sp < MAXVAL)
+        val[sp++] = f;
+    else
+        printf("error: stack full, can't push %g\n", f);
+}
+
+/* pop: pop and return top value from stack */
+double pop(void)
+{
+    if (sp > 0)
+        return val[--sp];
+    else {
+        printf("error: stack empty\n");
+        return 0.0;
+    }
+}
+
+#include <ctype.h>
+
+#define MAXOP 100 /* max size of operand or operator */
+#define NUMBER '0' /* signal that a number was found */
+
+int getch(void);
+void ungetch(int);
+
+/* getop: get next character or numeric operand */
+int getop(char s[])
+{
+    int i, c;
+
+    while ((s[0] = c = getch()) == ' ' || c == '\t')
+        ;
+
+    s[1] = '\0';
+
+    if (!isdigit(c) && c != '.')
+        return c; /* not a number */
+
+    i = 0;
+
+    if (isdigit(c)) /* collect integer part */
+        while (isdigit(s[++i] = c = getch()))
+            ;
+
+    if (c == '.') /* collect fraction part */
+        while (isdigit(s[++i] = c = getch()))
+            ;
+
+    s[i] = '\0';
+
+    if (c != EOF)
+        ungetch(c);
+
+    return NUMBER;
+}
+
+#define BUFSIZE 100
+char buf[BUFSIZE]; /* buffer for ungetch */
+int bufp = 0; /* next free position in buf */
+
+int getch(void) /* get a (possibly pushed-back) character */
+{
+    return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch(int c) /* push character back on input */
+{
+    if (bufp >= BUFSIZE)
+        printf("ungetch: too many characters\n");
+    else
+        buf[bufp++] = c;
+}
+
 // 4.10
 /* qsort: sort v[left]...v[right] into increasing order */
 void qsort(int v[], int left, int right)
@@ -199,4 +292,136 @@ void swap(int v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
+}
+
+// 5.2
+/* getint: get next integer from input into *pn */
+int getint(int *pn)
+{
+    int c, sign;
+    while (isspace(c = getch())) /* skip white space */
+        ;
+    if (!isdigit(c) && c != EOF && c != '+' && c != '-') {
+        ungetch(c); /* it is not a number */
+        return 0;
+    }
+    sign = (c == '-') ? -1 : 1;
+    if (c == '+' || c == '-')
+        c = getch();
+    for (*pn = 0; isdigit(c); c = getch())
+        *pn = 10 * *pn + (c - '0');
+    *pn *= sign;
+    if (c != EOF)
+        ungetch(c);
+    return c;
+}
+
+// 5.3
+/* strlen: return length of string s */
+int strlen(char *s)
+{
+    int n;
+    for (n = 0; *s != '\0', s++)
+        n++;
+    return n;
+}
+
+// 5.4
+/* strlen: return length of string s */
+int strlen(char *s)
+{
+    char *p = s;
+    while (*p != '\0')
+        p++;
+    return p - s;
+}
+
+// 5.4
+#define ALLOCSIZE 10000 /* size of available space */
+
+static char allocbuf[ALLOCSIZE]; /* storage for alloc */
+static char *allocp = allocbuf; /* next free position */
+
+char *alloc(int n) /* return pointer to n characters */
+{
+    if (allocbuf + ALLOCSIZE - allocp >= n) { /* it fits */
+        allocp += n;
+        return allocp - n; /* old p */
+    } else /* not enough room */
+        return 0;
+}
+
+void afree(char *p) /* free storage pointed to by p */
+{
+    if (p >= allocbuf && p < allocbuf + ALLOCSIZE)
+        allocp = p;
+}
+
+// 5.5
+/* strcpy: copy t to s; array subscript version */
+/*void strcpy(char *s, char *t)
+{
+    int i;
+
+    i = 0;
+    while ((s[i] = t[i]) != '\0')
+        i++;
+}*/
+
+/* strcpy: copy t to s; pointer version */
+/*void strcpy(char *s, char *t)
+{
+    int i;
+
+    i = 0;
+    while ((*s = *t) != '\0') {
+        s++;
+        t++;
+    }
+}*/
+
+/* strcpy: copy t to s; pointer version 2 */
+/*void strcpy(char *s, char *t)
+{
+    while ((*s++ = *t++) != '\0')
+        ;
+}*/
+
+/* strcpy: copy t to s; pointer version 3 */
+void strcpy(char *s, char *t)
+{
+    while (*s++ = *t++)
+        ;
+}
+
+/* strcmp: return <0 if s<t, 0 if s==t, >0 if s>t */
+int strcmp(char *s, char *t)
+{
+    int i;
+
+    for (i = 0; s[i] == t[i]; i++)
+        if (s[i] == '\0')
+            return 0;
+    return s[i] - t[i];
+}
+
+/* strcmp: return <0 if s<t, 0 if s==t, >0 if s>t */
+int strcmp(char *s, char *t)
+{
+    for ( ; *s == *t; s++, t++)
+        if (*s == '\0')
+            return 0;
+
+    return *s - *t;
+}
+
+
+// 7.7
+/* getline: read a line, return length */
+int getline(char *line, int max)
+{
+    if (fgets(line, max, stdin) == NULL)
+        return 0;
+    else
+    return strlen(line);
 }

@@ -15,7 +15,8 @@ int main(void)
 {
     int n;
     // static char s[MAXLINE];
-    n = -5234;
+    // char s[MAXLINE];
+    n = -35234;
     char s[] = "";
 
     itoa(n, s);
@@ -45,12 +46,11 @@ void itoa(int n, char s[])
     
     s[strlen(s)+1] = '\0';
     
-    printf("%d\n", n);
-    printf("%s\n", s);
-    // printf("%d\n", i);
-    printf("%d\n", strlen(s));
+    // printf("%d\n", n);
+    // printf("%s\n", s);
+    // // printf("%d\n", i);
+    // printf("%d\n", strlen(s));
 }
-
 
 /*
 the default
