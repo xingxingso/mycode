@@ -1,8 +1,12 @@
+/**
+ * Write a program to print all input lines that are longer than 80 characters.
+ */
+
 #include <stdio.h>
 
 void print_long_line();
 
-#define LIM 10
+#define LIM 80
 
 int main(void)
 {

@@ -1,3 +1,11 @@
+/******************************************************
+"Write a program to remove all comments from a C program. 
+Don't forget to handle quoted strings and character 
+constants properly. C comments do not nest."
+
+Author: Kant Chan (1126973789@qq.com) 
+******************************************************/
+
 #include <stdio.h>
 
 int main(void)

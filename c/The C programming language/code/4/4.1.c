@@ -7,6 +7,7 @@ Author: Kant Chan (1126973789@qq.com)
 ******************************************************/
 
 #include <stdio.h>
+#include <string.h>
 
 int strindex(char s[], char t[]);
 

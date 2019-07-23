@@ -9,6 +9,7 @@ Author: Kant Chan (1126973789@qq.com)
 ******************************************************/
 
 #include <stdio.h>
+#include <string.h>
 
 void itob(int n, char s[], int b);
 void reverse(char s[]);

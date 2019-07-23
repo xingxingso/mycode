@@ -1,51 +1,7 @@
-/*#include <stdio.h>
-
-#define MAXLENGTH 10
-
-// void circle_print(char s[], int lim, int f, int end);
-
-int main(void)
-{
-    int c, f, i, hasword;
-    char s[MAXLENGTH];
-    hasword = f = 0;
-
-    while((c = getchar()) != EOF) {
-        if (c == ' ' || c == '\t')
-        {            
-            if (f >= MAXLENGTH)
-            {
-                f = 0;
-            }
-            s[f] = c; 
-            ++f;
-        } else if (c == '\n')
-        {
-            if (hasword != 0)
-            {
-                putchar('\n');
-            }
-            f = 0;
-            hasword = 0;
-
-        } else {
-             hasword = 1;
-
-            for (i = 0; i < f; ++i)
-            {
-                putchar(s[i]);
-            }
-
-            putchar(c);
-
-            f = 0;
-        }
-
-    }
-
-    return 0;
-}*/
-
+/**
+ * Write a program to remove all trailing blanks and tabs from each line of input, 
+ * and to delete entirely blank lines.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,3 +55,51 @@ int main(void)
 
   return retval;
 }
+
+/*#include <stdio.h>
+
+#define MAXLENGTH 10
+
+// void circle_print(char s[], int lim, int f, int end);
+
+int main(void)
+{
+    int c, f, i, hasword;
+    char s[MAXLENGTH];
+    hasword = f = 0;
+
+    while((c = getchar()) != EOF) {
+        if (c == ' ' || c == '\t')
+        {            
+            if (f >= MAXLENGTH)
+            {
+                f = 0;
+            }
+            s[f] = c; 
+            ++f;
+        } else if (c == '\n')
+        {
+            if (hasword != 0)
+            {
+                putchar('\n');
+            }
+            f = 0;
+            hasword = 0;
+
+        } else {
+             hasword = 1;
+
+            for (i = 0; i < f; ++i)
+            {
+                putchar(s[i]);
+            }
+
+            putchar(c);
+
+            f = 0;
+        }
+
+    }
+
+    return 0;
+}*/

@@ -1,3 +1,7 @@
+/**
+ * Write a program to count blanks, tabs, and newlines.
+ */
+
 #include <stdio.h>
 
 int main(void)
@@ -29,45 +33,43 @@ int main(void)
     printf("Blanks: %d\nLines:%d\nTabs:%d\n", blank, newline, table);*/
 
     int blanks, tabs, newlines;
-      int c;
-      int done = 0;
-      int lastchar = 0;
+    int c;
+    int done = 0;
+    int lastchar = 0;
 
-      blanks = 0;
-      tabs = 0;
-      newlines = 0;
+    blanks = 0;
+    tabs = 0;
+    newlines = 0;
 
-      while(done == 0)
-      {
+    while(done == 0)
+    {
         c = getchar();
 
         if(c == ' ')
-          ++blanks;
+            ++blanks;
 
         if(c == '\t')
-          ++tabs;
+            ++tabs;
 
         if(c == '\n')
-          ++newlines;
+            ++newlines;
 
         if(c == EOF)
         {
-          if(lastchar != '\n')
-          {
-            ++newlines; /* this is a bit of a semantic stretch, but it copes
+            if(lastchar != '\n')
+            {
+                ++newlines; /* this is a bit of a semantic stretch, but it copes
                          * with implementations where a text file might not
                          * end with a newline. Thanks to Jim Stad for pointing
                          * this out.
                          */
-          }
-          done = 1;
+            }
+            done = 1;
         }
         lastchar = c;
-      }
+    }
 
-      printf("Blanks: %d\nTabs: %d\nLines: %d\n", blanks, tabs, newlines);    
-
-
+    printf("Blanks: %d\nTabs: %d\nLines: %d\n", blanks, tabs, newlines);    
 
     return 0;
 }
