@@ -9,6 +9,9 @@ Author: Kant Chan (1126973789@qq.com)
 ******************************************************/
 
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define MAXWORD 1000
 
@@ -54,8 +57,8 @@ struct tnode *addtree(struct tnode *p, char *w, int len)
 
     pw = stringsplite(w, &cw, len);
 
-    printf("%s\n", pw);
-    printf("%s\n", pw);
+    // printf("%s\n", pw);
+    // printf("%s\n", pw);
 
     if (p == NULL)
     {
