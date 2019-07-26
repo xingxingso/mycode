@@ -7,24 +7,50 @@ Author: Kant Chan (1126973789@qq.com)
 ******************************************************/
 
 #include <stdio.h>
+#include <ctype.h>
 
+// #include "../../helper/getword.h"
+// #include "../../helper/getline.h"
+
+#define MAX_BUFFER   1024
 
 struct wordtree {
     char *word;
+    int count;
     struct wordtree *left;
     struct wordtree *right;
-}
+};
 
 int main(void) {
-    // read file
-    while((c=getchar()) != EOF)
-    {
-        if (d != ' ' || c != ' ')
-            putchar(c);
-        d = c;
+    int c;
+    char  Buffer[MAX_BUFFER];
+    char *word;
+    int lines = 1;
+
+
+    /*read file*/
+    while((c=getchar()) != EOF) {
+        printf("%c", c);
+        break;
+        if (c == '\n') {
+            lines++;
+            continue;
+        }
+
+        while (!isalpha(c)) {
+            c = getchar();
+        }
+
+        while(isalpha(c)) {
+            *word++=c;
+        }
+
+        *word = '\0';    
+        printf("%s\n", word);
     }
-    // handle word
-    // print the tree
     
+    /*handle word*/
+    /*print the tree*/
+      
     return 0;
 }

@@ -6,6 +6,7 @@
 
 ```bash
 $ gcc ../c/The\ C\ programming\ language/code/1/hello.c
+$ clang ../c/The\ C\ programming\ language/code/1/hello.c
 $ ./a.out
 ```
 
