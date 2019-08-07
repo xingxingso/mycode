@@ -1,3 +1,10 @@
+/******************************************************
+"Write a function undef that will remove a name and 
+definition from the table maintained by lookup and install ."
+
+Author: Kant Chan (1126973789@qq.com) 
+******************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
