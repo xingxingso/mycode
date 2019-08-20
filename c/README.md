@@ -64,3 +64,7 @@ malloc(sizeof(struct tnode))
 clock();
 // time_taken = clock();
 ```
+
+## Reference
+
+- [client server program in C - Stack Overflow](https://stackoverflow.com/questions/16868999/client-server-program-in-c)
